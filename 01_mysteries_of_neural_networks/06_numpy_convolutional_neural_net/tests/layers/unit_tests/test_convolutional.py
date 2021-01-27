@@ -2,12 +2,10 @@ import numpy as np
 import pytest
 
 from src.errors import InvalidPaddingModeError
-from src.layers.convolutional import ConvLayer2D, FastConvLayer2D, \
-    SuperFastConvLayer2D
+from src.layers.convolutional import ConvLayer2D, FastConvLayer2D, SuperFastConvLayer2D
 
 
 class TestConvLayer2D:
-
     def test_pad_symmetrical(self):
         # given
         array = np.random.rand(100, 28, 28, 3)
@@ -40,7 +38,7 @@ class TestConvLayer2D:
         # given
         w = np.random.rand(5, 5, 3, 16)
         b = np.random.rand(16)
-        padding = 'valid'
+        padding = "valid"
 
         # when
         layer = ConvLayer2D(w=w, b=b, padding=padding)
@@ -53,7 +51,7 @@ class TestConvLayer2D:
         # given
         w = np.random.rand(5, 5, 3, 16)
         b = np.random.rand(16)
-        padding = 'same'
+        padding = "same"
 
         # when
         layer = ConvLayer2D(w=w, b=b, padding=padding)
@@ -66,7 +64,7 @@ class TestConvLayer2D:
         # given
         w = np.random.rand(5, 7, 3, 16)
         b = np.random.rand(16)
-        padding = 'same'
+        padding = "same"
 
         # when
         layer = ConvLayer2D(w=w, b=b, padding=padding)
@@ -79,7 +77,7 @@ class TestConvLayer2D:
         # given
         w = np.random.rand(5, 5, 3, 16)
         b = np.random.rand(16)
-        padding = 'lorem ipsum'
+        padding = "lorem ipsum"
 
         # when
         layer = ConvLayer2D(w=w, b=b, padding=padding)
@@ -90,7 +88,7 @@ class TestConvLayer2D:
         # given
         w = np.random.rand(5, 5, 3, 16)
         b = np.random.rand(16)
-        padding = 'same'
+        padding = "same"
 
         # when
         layer = ConvLayer2D(w=w, b=b, padding=padding)
@@ -103,7 +101,7 @@ class TestConvLayer2D:
         # given
         w = np.random.rand(3, 5, 3, 16)
         b = np.random.rand(16)
-        padding = 'same'
+        padding = "same"
 
         # when
         layer = ConvLayer2D(w=w, b=b, padding=padding)
@@ -116,7 +114,7 @@ class TestConvLayer2D:
         # given
         w = np.random.rand(5, 5, 3, 16)
         b = np.random.rand(16)
-        padding = 'valid'
+        padding = "valid"
 
         # when
         layer = ConvLayer2D(w=w, b=b, padding=padding)
@@ -129,7 +127,7 @@ class TestConvLayer2D:
         # given
         w = np.random.rand(3, 5, 3, 16)
         b = np.random.rand(16)
-        padding = 'valid'
+        padding = "valid"
 
         # when
         layer = ConvLayer2D(w=w, b=b, padding=padding)
@@ -142,7 +140,7 @@ class TestConvLayer2D:
         # given
         w = np.random.rand(5, 5, 3, 16)
         b = np.random.rand(16)
-        padding = 'lorem ipsum'
+        padding = "lorem ipsum"
 
         # when
         layer = ConvLayer2D(w=w, b=b, padding=padding)
@@ -154,7 +152,7 @@ class TestConvLayer2D:
         w = np.random.rand(5, 5, 3, 16)
         b = np.random.rand(16)
         activation = np.random.rand(16, 11, 11, 3)
-        padding = 'same'
+        padding = "same"
 
         # when
         layer = ConvLayer2D(w=w, b=b, padding=padding)
@@ -169,7 +167,7 @@ class TestConvLayer2D:
         w = np.random.rand(5, 5, 3, 16)
         b = np.random.rand(16)
         activation = np.random.rand(16, 11, 11, 3)
-        padding = 'valid'
+        padding = "valid"
 
         # when
         layer = ConvLayer2D(w=w, b=b, padding=padding)
@@ -184,7 +182,7 @@ class TestConvLayer2D:
         w = np.random.rand(5, 5, 3, 16)
         b = np.random.rand(16)
         activation = np.random.rand(16, 11, 11, 3)
-        padding = 'lorem ipsum'
+        padding = "lorem ipsum"
 
         # when
         layer = ConvLayer2D(w=w, b=b, padding=padding)
@@ -196,7 +194,7 @@ class TestConvLayer2D:
         activation = np.random.rand(64, 11, 11, 3)
         w = np.random.rand(5, 5, 3, 16)
         b = np.random.rand(16)
-        layer = ConvLayer2D(w=w, b=b, padding='same')
+        layer = ConvLayer2D(w=w, b=b, padding="same")
 
         # when
         forward_result = layer.forward_pass(activation, training=True)
@@ -210,7 +208,7 @@ class TestConvLayer2D:
         activation = np.random.rand(64, 11, 11, 3)
         w = np.random.rand(5, 5, 3, 16)
         b = np.random.rand(16)
-        layer = ConvLayer2D(w=w, b=b, padding='valid')
+        layer = ConvLayer2D(w=w, b=b, padding="valid")
 
         # when
         forward_result = layer.forward_pass(activation, training=True)
@@ -221,13 +219,12 @@ class TestConvLayer2D:
 
 
 class TestFastConvLayer2D:
-
     def test_forward_pass_with_same_padding(self):
         # given
         w = np.random.rand(5, 5, 3, 16)
         b = np.random.rand(16)
         activation = np.random.rand(16, 11, 11, 3)
-        padding = 'same'
+        padding = "same"
 
         # when
         layer = FastConvLayer2D(w=w, b=b, padding=padding)
@@ -242,7 +239,7 @@ class TestFastConvLayer2D:
         w = np.random.rand(5, 5, 3, 16)
         b = np.random.rand(16)
         activation = np.random.rand(16, 11, 11, 3)
-        padding = 'valid'
+        padding = "valid"
 
         # when
         layer = FastConvLayer2D(w=w, b=b, padding=padding)
@@ -257,7 +254,7 @@ class TestFastConvLayer2D:
         w = np.random.rand(5, 5, 3, 16)
         b = np.random.rand(16)
         activation = np.random.rand(16, 11, 11, 3)
-        padding = 'lorem ipsum'
+        padding = "lorem ipsum"
 
         # when
         layer = FastConvLayer2D(w=w, b=b, padding=padding)
@@ -269,7 +266,7 @@ class TestFastConvLayer2D:
         activation = np.random.rand(64, 11, 11, 3)
         w = np.random.rand(5, 5, 3, 16)
         b = np.random.rand(16)
-        layer = FastConvLayer2D(w=w, b=b, padding='same')
+        layer = FastConvLayer2D(w=w, b=b, padding="same")
 
         # when
         forward_result = layer.forward_pass(activation, training=True)
@@ -283,7 +280,7 @@ class TestFastConvLayer2D:
         activation = np.random.rand(64, 11, 11, 3)
         w = np.random.rand(5, 5, 3, 16)
         b = np.random.rand(16)
-        layer = FastConvLayer2D(w=w, b=b, padding='valid')
+        layer = FastConvLayer2D(w=w, b=b, padding="valid")
 
         # when
         forward_result = layer.forward_pass(activation, training=True)
@@ -294,13 +291,12 @@ class TestFastConvLayer2D:
 
 
 class TestSuperFastConvLayer2D:
-
     def test_forward_pass_with_same_padding(self):
         # given
         w = np.random.rand(5, 5, 3, 16)
         b = np.random.rand(16)
         activation = np.random.rand(16, 11, 11, 3)
-        padding = 'same'
+        padding = "same"
 
         # when
         layer = SuperFastConvLayer2D(w=w, b=b, padding=padding)
@@ -315,7 +311,7 @@ class TestSuperFastConvLayer2D:
         w = np.random.rand(5, 5, 3, 16)
         b = np.random.rand(16)
         activation = np.random.rand(16, 11, 11, 3)
-        padding = 'valid'
+        padding = "valid"
 
         # when
         layer = SuperFastConvLayer2D(w=w, b=b, padding=padding)
@@ -330,7 +326,7 @@ class TestSuperFastConvLayer2D:
         w = np.random.rand(5, 5, 3, 16)
         b = np.random.rand(16)
         activation = np.random.rand(16, 11, 11, 3)
-        padding = 'lorem ipsum'
+        padding = "lorem ipsum"
 
         # when
         layer = SuperFastConvLayer2D(w=w, b=b, padding=padding)
@@ -342,7 +338,7 @@ class TestSuperFastConvLayer2D:
         activation = np.random.rand(64, 11, 11, 3)
         w = np.random.rand(5, 5, 3, 16)
         b = np.random.rand(16)
-        layer = SuperFastConvLayer2D(w=w, b=b, padding='same')
+        layer = SuperFastConvLayer2D(w=w, b=b, padding="same")
 
         # when
         forward_result = layer.forward_pass(activation, training=True)
@@ -356,7 +352,7 @@ class TestSuperFastConvLayer2D:
         activation = np.random.rand(64, 11, 11, 3)
         w = np.random.rand(5, 5, 3, 16)
         b = np.random.rand(16)
-        layer = SuperFastConvLayer2D(w=w, b=b, padding='valid')
+        layer = SuperFastConvLayer2D(w=w, b=b, padding="valid")
 
         # when
         forward_result = layer.forward_pass(activation, training=True)
@@ -364,3 +360,4 @@ class TestSuperFastConvLayer2D:
 
         # then
         assert backward_result.shape == activation.shape
+
